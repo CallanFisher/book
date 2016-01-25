@@ -15,34 +15,41 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Callan Fisher's Resume</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="callanResume/education.html">Education</a></li>
+        <li><a href="callanResume/Jobs.html">Jobs</a></li>
+        <li><a href="callanResume/Skills.html">Skills</a></li>
+        <li><a href="callanResume/subscribe.html">Subscribe</a></li>
+        <li><a href="callanResume/tasks.html">Tasks</a></li>
+      </ul>
+    </div>
+  </nav>
 
-      <nav>
-        <div class="nav-wrapper">
-          <a id="name" href="#" class="brand-logo center"></a>
-          <ul id="navbar" class="left hide-on-med-and-down">
-            <li><a href='#' onclick="showPage('aboutme')">About Me</a></li>
-            <li><a href="#" onclick="showPage('education')">Education</a></li>
-            <li><a href="#" onclick="showPage('experience')">Experience</a></li>
-            <li><a href="#" onclick="showPage('skills')">Skills</a></li>
-            <li><a href="#" onclick="showPage('contact')">Contact Nic</a></li>
-          </ul>
-        </div>
-      </nav>
-
-      <div class="card blue-grey lighten-2">
-        <div class="card-content white-text">
-          <div id=presentation_content>
-            <p>Loading ...</p>
-          </div>       
+      <br></br>
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">About Me</span>
+              <p>I'm a Senior at the University of Colorado at Boulder Studying Computer Science with a Minor in Economcis</p>
+            </div>
+          </div>
         </div>
       </div>
-    
-      
-      <script src="js/resume.js"></script>
-      <script src="js/aboutme.js"></script>
-      <script src="js/education.js"></script>
-      <script src="js/experience.js"></script>
-      <script src="js/skills.js"></script>
-      <script src="js/contact.js"></script>
-    </body>
-  </html>
+    <script>
+
+        // create a firebase reference to the root
+        var ref = new Firebase('https://callanfisherresume.firebaseio.com/')
+
+        ref.child('/apps/resume').on('value', function(snapshot){
+          var descriptions = snapshot.val()
+          descriptions.forEach(function(description){
+            $('#descriptions').append('<li class="collection-item">' + description + '</li>')
+          })
+        })
+    </script>
+  </body>
+</html>

@@ -24,38 +24,97 @@
           <li><a href="Jobs.html">Jobs</a></li>
           <li><a href="Skills.html">Skills</a></li>
           <li><a href="subscribe.html">Subscribe</a></li>
+          <li><a href="tasks.html">Tasks</a></li>
         </ul>
       </div>
     </nav>
 
-
 		<h1>Subscribe</h1>
 		<ul class="collection" id="descriptions"></ul>		
 
+  <div class="container">
     <h4> Adding a Subscriber </h4>
 
     <div class="row">
       <form class="col s12">
       <div class="row">
         <div class="input-field col s12">
-        <input id="title" type="text" class="validate" length="150">
-        <label for="title">Subscriber</label>
+        <input id="email" type="email" class="validate" length="150">
+        <label for="email" data-error="Invalid" data-success="Correct">Email</label>
         </div>
       </div>
       </form>
     </div>
 
+    <div class="row">
+      <div class="input-field col s12">
+           <a class="modal-action modal-close waves-effect waves-light btn" id="submit">Submit</a>
+      </div>
+    </div>
+      <br>
+      <h4>Email List</h4>
+      <ul class="collection" id="subscribers"></ul>
+   </div>
+
+
+
 		<script>
         // create a firebase reference to the root
-        var ref = new Firebase('https://callanfisherresume.firebaseio.com/')
-        // read data from the location Relevant Courses, only once
-        ref.child('').on('value', function(snapshot){
-          var descriptions = snapshot.val()
-          descriptions.forEach(function(description){
+        var root = new Firebase('https://callanfisherresume.firebaseio.com')
+        var taskListRef = root.child('/Resume/subscribers')
 
-            $('#descriptions').append('<li class="collection-item">' + description + '</li>')
-          })
+
+
+         $('#submit').click(function(){
+          console.log('the submit is clicked')
+          var email = $('#email').val()
+          console.log('the email is', email)
+          var taskObject = {
+              email: email
+          }
+          var newTaskRef = taskListRef.push()
+          newTaskRef.set(taskObject)
+          
+          $('#modal1').closeModal();
         })
+
+
+
+          var subscribers = [];
+          $(document).ready(function(){ 
+          var fire = new Firebase('https://callanfisherresume.firebaseio.com')
+          fire.child('/Resume/subscribers').on('value', function(snapshot){
+          subscribers = snapshot.val();
+          console.log(snapshot.val())
+          loadData(subscribers);                              
+          })
+        });
+
+
+        function loadData(subscribers){
+          $('#subscribers').empty();
+          if(subscribers==null){
+            return;
+          }
+    
+          for( var key in subscribers){
+            if (subscribers.hasOwnProperty(key)) {
+ 
+              subscriber = subscribers[key];
+
+              $('#subscribers').append(
+                '<div class="row">'+
+                  '<div class="col s12 m6">'+
+                    '<div class="card blue-grey darken-1">'+
+                      ' <div class="card-content white-text">'+
+                        '<span class="card-title">'+subscriber.email+'</span'+
+                      '</div>'+
+                    '</div>'+
+                  '</div>'+
+                '</div>')
+            }
+          }
+        }
 		</script>
-    </body>
+   </body>
   </html>
