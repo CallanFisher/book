@@ -27,9 +27,9 @@
   <script>
 
   // create a firebase reference to the root
-        var ref = new Firebase('https://callanfisherresume.firebaseio.com/')
+        var ref = new Firebase('https://publicdata-parking.firebaseio.com')
 
-        ref.child('/apps/resume').on('value', function(snapshot){
+        ref.child('san_francisco/garages').on('value', function(snapshot){
           var descriptions = snapshot.val()
           descriptions.forEach(function(description){
             $('#descriptions').append('<li class="collection-item">' + description + '</li>')

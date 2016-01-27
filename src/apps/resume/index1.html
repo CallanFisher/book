@@ -23,6 +23,7 @@
         <li><a href="callanResume/Jobs.html">Jobs</a></li>
         <li><a href="callanResume/Skills.html">Skills</a></li>
         <li><a href="callanResume/subscribe.html">Subscribe</a></li>
+        <li><a href="callanResume/tasks.html">Tasks</a></li>
       </ul>
     </div>
   </nav>
@@ -43,7 +44,7 @@
         // create a firebase reference to the root
         var ref = new Firebase('https://callanfisherresume.firebaseio.com/')
 
-        ref.child('Resume/Skills').on('value', function(snapshot){
+        ref.child('/apps/resume').on('value', function(snapshot){
           var descriptions = snapshot.val()
           descriptions.forEach(function(description){
             $('#descriptions').append('<li class="collection-item">' + description + '</li>')
