@@ -22,12 +22,26 @@
       <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
       <script src="/js/leaflet.label.js"></script>
 
+
+    <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">Bears, Beats, Battlestar Galactica Parking</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="garages.html">Garages</a></li>
+        <li><a href="garages_map.html">Garage Maps</a></li>
+      </ul>
+    </div>
+  </nav>
+
       <div class="container">
 
         <h1>Garages Map</h1>
         <div id="map" style="height:500px"></div>
 
       </div>
+
+
 
       <script>
 
@@ -64,6 +78,8 @@ var markersLayerGroup = L.layerGroup()
 // add the makers layer group to the map
 markersLayerGroup.addTo(map)
 
+//marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+
 // visualize garages on a map
 function drawGarages(garages){
 
@@ -74,6 +90,7 @@ function drawGarages(garages){
     var points = garage.points
     var latlng = [points[0], points[1]]
 
+
     // create a circle layer
     var circle = L.circle(latlng, 10, {
         color: 'red',
@@ -83,6 +100,8 @@ function drawGarages(garages){
 
     // add the circle layer to the makers layer group
     markersLayerGroup.addLayer(circle)
+
+
 
   })
 
