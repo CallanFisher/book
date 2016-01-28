@@ -123,25 +123,25 @@ function drawGarages(garages){
     var name = garage.friendlyName
 
 
-    // Compare this data point to the min/max. 
-    var ratio = spots/maxCap
+    // // Compare this data point to the min/max. 
+    // var ratio = spots/maxCap
     
-    // Some fancy math for determing the size of the circle. Also a check to modify any that would be too small. 
-    var size = 200 * ratio
-    if (size < 100) size = 100; 
+    // // Some fancy math for determing the size of the circle. Also a check to modify any that would be too small. 
+    // var size = 200 * ratio
+    // if (size < 100) size = 100; 
     
-    var range = 100 * (1-ratio)
-    var r = Math.round((255 * range) / 100);
-    var g = Math.round((255 * (100 - range)) / 100);
-    var b = 0;
-    var color= "rgb("+r+" ,"+g+","+ b+")"; 
+    // var range = 100 * (1-ratio)
+    // var r = Math.round((255 * range) / 100);
+    // var g = Math.round((255 * (100 - range)) / 100);
+    // var b = 0;
+    // var color= "rgb("+r+" ,"+g+","+ b+")"; 
 
 
 
     // create a circle layer
-    var circle = L.circle(latlng, size, {
-        color: color,
-        fillColor: color,
+     var circle = L.circle(latlng, 50, {
+        color: 'red',
+        fillColor: '#f03',
         fillOpacity: 0.5
     }).bindLabel(name + " contains " + spots + " spots.")
 
