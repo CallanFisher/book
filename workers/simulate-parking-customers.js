@@ -39,21 +39,21 @@ function simulate(){
 function enter(person){
   console.log('enter', person)
   // TODO: put this person in the Firebase
-  // var ref = new Firebase('your-firebase-url')
+  var ref = new Firebase('https://bbbsg.firebaseio.com/')
   // ...
 }
 
 function leave(person){
   console.log('leave', person)
   // TODO: remove this person from the Firebase
-  // var ref = new Firebase('your-firebase-url')
+  var ref = new Firebase('https://bbbsg.firebaseio.com/')
   // ...
 }
 
 
 function clear(){
   // TODO: remove all people from the Firebase
-  // var ref = new Firebase('your-firebase-url')
+  var ref = new Firebase('https://bbbsg.firebaseio.com/')
   // ...
 }
 

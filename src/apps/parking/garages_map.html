@@ -46,7 +46,7 @@
 
       <script>
 // create a firebase reference to the root
-var ref = new Firebase('https://publicdata-parking.firebaseio.com');
+var ref = new Firebase('https://publicdata-parking.firebaseio.com/');
 var data
 // read data from the location san_francisco/garages, only once
 ref.child('san_francisco/garages').on('value', function(snapshot){
@@ -57,6 +57,35 @@ ref.child('san_francisco/garages').on('value', function(snapshot){
   })
   drawGarages(garages)
 })
+
+// // create a firebase reference to the root
+var ref = new Firebase('https://publicdata-transit.firebaseio.com/sf-muni');
+var dataBus
+// read data from the location san_francisco/garages, only once
+ref.child('sf-muni/vehicles').on('value', function(snapshot){
+  dataBus = snapshot.val()
+  console.log('dataBus is loaded', dataBus)
+  var buses = _.filter(dataBus, function(d){
+      return _.has(d, 'real_bus')
+  })
+  busUpdated(buses)
+})
+
+function busUpdated(buses) {
+    // Bus line 'X' changed location.
+    var lat = 0;
+    var lon = 0;
+    console.log("Buses: " + buses)
+    _.forEach(buses, function(buses){
+    var lat = Number(bus.real_bus);
+    var lon = Number(bus.real_bus);
+    })fillOpacity: 0.7
+    // add the circle layer to the makers layer group
+    markersLayerGroup.addLayer()
+}
+
+
+
 var attributionText = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a       href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
 // create the map
 var map = L.map($('#map')[0]).setView([37.78, -122.41], 13)
@@ -66,11 +95,15 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
     id: 'doubleshow.noeko77m',
     accessToken: 'pk.eyJ1IjoiZG91Ymxlc2hvdyIsImEiOiJjaWZ5Y3B1eTE1MHRidWRtMG9uZXluajg4In0.u5ONW27Ly5cU7M5KYi6Y9Q'
 }).addTo(map)
+
+
+
 // create a layer group to hold all the markers
 var markersLayerGroup = L.layerGroup()
 // add the makers layer group to the map
 markersLayerGroup.addTo(map)
-//marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+
+
 // visualize garages on a map
 function drawGarages(garages){
   // clear all existing markers (if any)
