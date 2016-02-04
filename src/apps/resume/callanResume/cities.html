@@ -7,7 +7,7 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 
       <!--Import stylesheet for Leaflet to work-->
-      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
       <link rel="stylesheet" href="css/leaflet.label.css" />
 
       <!--Let browser know website is optimized for mobile-->
@@ -19,7 +19,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
-      <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
       <script src="js/leaflet.label.js"></script>
 
 
@@ -33,7 +33,7 @@
           <li><a href="Skills.html">Skills</a></li>
           <li><a href="subscribe.html">Subscribe</a></li>
           <li><a href="tasks.html">Tasks</a></li>
-          <li><a>Cities</a></li>
+          <li><a href="cities.html">Cities</a></li>
         </ul>
       </div>
     </nav>
@@ -108,8 +108,8 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
     id: 'doubleshow.noeko77m',
     accessToken: 'pk.eyJ1IjoiZG91Ymxlc2hvdyIsImEiOiJjaWZ5Y3B1eTE1MHRidWRtMG9uZXluajg4In0.u5ONW27Ly5cU7M5KYi6Y9Q'
 }).addTo(map)
-
-
+// create a layer group to hold all the markers
+//var markersLayerGroup = L.layerGroup()
 // add the makers layer group to the map
 markersLayerGroup.addTo(map)
 
@@ -128,17 +128,17 @@ function displayCity(city, name){
       '</div>' +
       '<div class="card-content">' + 
         '<span class="card-title activator grey-text text-darken-4"><b>'+name+'</b><i class="material-icons right">more_vert</i></span>' +
-        '<p>' + city['daily']['summary'] + '</p>' +
+        '<p>' +city['daily']['summary'] + '</p>' +
       '</div>' +
       '<div class="card-reveal">' +
-        '<span class="card-title grey-text text-darken-4"><b>' +name+'</b><i class="material-icons right">close</i></span>' +
+        '<span class="card-title grey-text text-darken-4"><b>'+name+'</b><i class="material-icons right">close</i></span>' +
           '<ul class="collection">'+
-          '<li class="collection-item">' + city['minutely']['summary']+ '</li>'+
+          '<li class="collection-item">' +city['minutely']['summary']+ '</li>'+
           '<li class="collection-item">Current Temperature: ' + city['currently']['temperature']+ ' degrees F</li>'+
-          '<li class="collection-item">Cloud Coverage: ' + (city['currently']['cloudCover']*100)+ '%</li>'+
-          '<li class="collection-item">Chance of Precipitation: ' + (city['currently']['precipProbability'] * 100)+ '%</li>'+
-          '<li class="collection-item">Nearest Storm: ' + city['currently']['nearestStormDistance']+ ' miles away</li>'+ 
-          '<li class="collection-item">Visability: ' + city['currently']['visibility']+ ' miles</li>'+ 
+          '<li class="collection-item">Cloud Coverage: '+(city['currently']['cloudCover']*100)+ '%</li>'+
+          '<li class="collection-item">Chance of Precipitation: ' +(city['currently']['precipProbability'] * 100)+ '%</li>'+
+          '<li class="collection-item">Nearest Storm: '+city['currently']['nearestStormDistance']+ ' miles away</li>'+ 
+          '<li class="collection-item">Visability: '+city['currently']['visibility']+ ' miles</li>'+ 
         '</ul>'
       '</div>' +
     '</div>';
