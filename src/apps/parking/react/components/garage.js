@@ -7,10 +7,8 @@
 MyComponents.Garage = React.createClass({
   render: function() {
     return (
-      <div className="card">
-        <div className="card-content">
-        TODO: This is a component about a garage whose
-        raw data is {JSON.stringify(this.props.garage)}
+      <div className="card blue darken-4">
+        <div className="card-content white-text">
           <MyComponents.GarageTitle
             title={this.props.garage.friendlyName}/>
           <MyComponents.GarageSpaces
