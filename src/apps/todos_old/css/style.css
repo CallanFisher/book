@@ -1,0 +1,16 @@
+.Low{
+	background-color: #006600 !important;
+}
+.Medium{
+	background-color: #ffff00 !important;
+}
+.High{
+	background-color: #ff0000 !important;
+}
+/*Override*/
+.collection {
+	overflow: visible !important;
+}
+.collection-item{
+	border-bottom: 0px !important;
+}
